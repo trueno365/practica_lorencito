@@ -11,27 +11,39 @@ import java.util.ArrayList;
  * @author loren
  */
 public class Cajero {
-
     String n;
     int c;
     double t;
     ArrayList<Producto> ps;
-
+    /**
+     * Este es el contructor para la clase cajero
+     * Inizializa el cajero con un nombre y deja los contadores y la lista de productos a 0
+     * @param n este es el nombre del cajero
+     */
     public Cajero(String n) {
         this.n = n;
         this.c = 0;
         this.t = 0;
         this.ps = new ArrayList<>();
     }
-
+    /**
+     * Añade un nuevo producto a la lista de cajero
+     * @param p El producto que se va a agregar
+     */
     public void ANADIRPRODUCTO(Producto p) {
         ps.add(p);
     }
-
+    /**
+     * Elimina un producto especifico de la lista del cajero
+     * @param p El producto que va a ser eliminado
+     */
     public void eliminarProDUCTO(Producto p) {
         ps.remove(p);
     }
-
+    /**
+     * Calcula el importe total de la compra, incluyendo el subtotal, iva y el total general 
+     * ademas muestra el ticket y vacia la lista de producto
+     */
     public void cobrar() {
         double subt = 0;
         for (Producto p : ps) {
@@ -56,7 +68,10 @@ public class Cajero {
         t = t + tot;
         ps.clear();
     }
-
+    /**
+     * Calcula y muestra por pantalla el desgloce final de la recaudaccion tickets emitidos, total acumulado,
+     * iva recaudado y recaudacion media
+     */
     public void cierreCaja() {
         double ivaRec = t - (t / (1 + 0.21));
 
@@ -68,15 +83,24 @@ public class Cajero {
         System.out.println("IVA recaudado:    " + String.format("%.2f", ivaRec) + " EUR");
         System.out.println("==========================");
     }
-
+    /**
+     * Comprueba si la lista de productos del ticket esta vacia
+     * @return true si la lista de productos esta vacia y false caso contrario
+     */
     public boolean ticketVacio() {
         return ps.isEmpty();
     }
-
+    /**
+     * Obtiene el numero total de tickets que se ha emitido
+     * @return devuelve eñ numero de tickets emitidos
+     */
     public int getTicketsEmitidos() {
         return c;
     }
-
+    /**
+     * Obtiene la suma total recaudada durante el dia
+     * @return devuelve el importe total acumulado del dia
+     */
     public double getTotalDia() {
         return t;
     }
